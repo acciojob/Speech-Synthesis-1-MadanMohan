@@ -36,13 +36,20 @@ const speeches = window.speechSynthesis
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
 const info = document.getElementsByTagName("textarea")[0]
-info = info.innerText;
-  const msg = new SpeechSynthesisUtterance(info);
+  const msg = new SpeechSynthesisUtterance();
   //Your code goes here
 		function speak1() {
+			msg.text = info.value;
+			msg.rate = options[0].rate
+			msg.pitch = options[1].pitch
+			speeches.cancel()
 			speeches.speak(msg)
 		}
-		speakButton.addEventListener("click",speak1())
+		function stop1(){
+		speeches.pause()}
+			speeches.speak(msg)
+		speakButton.addEventListener("click",speak1)
+		stopButton.addEventListener("click",stop1)
 </script>
 
 </body>
