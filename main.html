@@ -35,8 +35,13 @@
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
-
+const info = document.getElementsByTagName("textarea")[0]
+info = info.innertext
   //Your code goes here
+		function speak(info) {
+			msg.speak(info)
+			}
+		speakButton.addEventListener("click",speak(info))
 </script>
 
 </body>
