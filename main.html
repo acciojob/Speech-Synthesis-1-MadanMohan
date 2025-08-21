@@ -5,6 +5,7 @@
   <title>Speech Synthesis</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
+ 
 </head>
 <body>
 
@@ -38,10 +39,26 @@ const speeches = window.speechSynthesis
 const info = document.getElementsByTagName("textarea")[0]
   const msg = new SpeechSynthesisUtterance();
   //Your code goes here
+
+
+      for(let i = 0;i<speeches.getVoices().length;i++){
+      const element = document.createElement("option");
+        element.innerText = speeches.getVoices()[i].name;
+        voicesDropdown.appendChild(element);
+      }
+
 		function speak1() {
+      const selectedIndex = voicesDropdown.selectedIndex;
+      if(selectedIndex>=1){
+        console.log(speeches.getVoices()[selectedIndex-1].name)
+        console.log(selectedIndex)
+        speeches.onvoiceschanged = speeches.getVoices()[selectedIndex-1];
+      }
+      
 			msg.text = info.value;
-			msg.rate = options[0].rate
-			msg.pitch = options[1].pitch
+			msg.rate = options[0].value
+			
+			msg.pitch = options[1].value 
 			speeches.cancel()
 			speeches.speak(msg)
 		}
